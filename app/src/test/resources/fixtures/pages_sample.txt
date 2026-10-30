@@ -1,0 +1,17 @@
+# 无障碍页面样本（合成数据）
+# 全部文本为虚构示例，结构与真机导出格式一致（字段用 U+001F，文本用 U+001E 分隔）
+# 格式：<页面文件> U+001F <包名> U+001F <窗口标题> U+001F <文本1> U+001E <文本2> ...
+#
+1000-com.tencent.mm-001.jsoncom.tencent.mm微信微信通讯录发现我示例群聊A中午吃什么下午3:20[转账] 已收款示例联系人的消息预览订阅号消息示例公众号: 今日推送晚上8:00示例文件传输助手文件已保存设置朋友圈扫一扫示例游戏3.4版本更新
+1001-com.tencent.mm-002.jsoncom.tencent.mm微信微信支付付款给示例商户A￥5.00付款方式更改零钱支付
+1002-com.tencent.mm-003.jsoncom.tencent.mm微信支付成功示例商户A（**例）¥5.00完成
+1003-com.eg.android.AlipayGphone-004.jsoncom.eg.android.AlipayGphone支付宝回首页支付成功4.50示例便利店有限公司￥4.50付款方式示例银行储蓄卡(0000)完成
+1004-com.tencent.mm-005.jsoncom.tencent.mm微信收款成功通知微信支付支付金额：20.00元支付时间2026-10-27 10:00:00示例收款方查看详情完成
+1005-com.eg.android.AlipayGphone-006.jsoncom.eg.android.AlipayGphone支付宝收付款扫一扫收钱付钱余额宝账户卡包出行首页理财生活我的消息设置帮助客服上一笔示例账单查看更多账单详情支付成功
+1006-com.tencent.mm-007.jsoncom.tencent.mm微信服务收付款钱包金融理财生活服务手机充值生活缴费城市服务交通出行酒店民宿购物消费京东购物美团外卖
+1007-com.tencent.mm-008.jsoncom.tencent.mm通讯录通讯录新的朋友群聊标签公众号服务号我的企业及企业联系人示例联系人A示例联系人B示例联系人CABC
+1008-com.eg.android.AlipayGphone-009.jsoncom.eg.android.AlipayGphone支付宝搜索扫一扫收付款出行领福利卡包余额宝蚂蚁森林花呗借呗网商银行更多
+1009-com.eg.android.AlipayGphone-010.jsoncom.eg.android.AlipayGphone账单账单搜索交易记录今日支出¥0.00今日收入¥0.00查看账单
+1010-com.tencent.mm-011.jsoncom.tencent.mm我我服务收藏朋友圈订单卡包表情设置示例昵称微信号：example_id
+1011-com.tencent.mm-012.jsoncom.tencent.mm微信聊天信息示例联系人A消息免打扰置顶聊天加密聊天查找聊天记录示例消息1示例消息2退群清空聊天记录
+1012-com.eg.android.AlipayGphone-013.jsoncom.eg.android.AlipayGphone我的我的账单总资产余额余额宝花呗借呗设置个人主页

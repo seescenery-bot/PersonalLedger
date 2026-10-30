@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  通知栏小图标（smallIcon）。
+
+  规范要求（Android / 澎湃OS 通知规范）：
+    · 24×24dp，纯白描边/剪影，**只有 alpha 形状**，不带颜色；
+    · 系统会用单一颜色对它做 tint，任何不透明色块都会变成一块实心白方；
+    · 形状要撑满 24dp 画布，否则在状态栏里看起来很小、很模糊。
+
+  此前用的是 @drawable/ic_launcher_foreground（108dp 的自适应图标前景），
+  它整块圆角矩形都是不透明填充 —— 系统 tint 之后状态栏里只剩一个白色方块。
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- 票据外框（evenOdd 挖空中间，得到一条 2.4dp 的描边） -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:fillType="evenOdd"
+        android:pathData="M6,2H18A4,4 0 0 1 22,6V18A4,4 0 0 1 18,22H6A4,4 0 0 1 2,18V6A4,4 0 0 1 6,2Z M6,4.4H18A1.6,1.6 0 0 1 19.6,6V18A1.6,1.6 0 0 1 18,19.6H6A1.6,1.6 0 0 1 4.4,18V6A1.6,1.6 0 0 1 6,4.4Z" />
+
+    <!-- 三行账目 -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M7.2,8.0H16.8V9.8H7.2Z M7.2,11.1H16.8V12.9H7.2Z M7.2,14.2H13.0V16.0H7.2Z" />
+</vector>

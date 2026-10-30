@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  通道 B 无障碍配置（需求文档 §6.3.1 / 附录 A.4）
+
+  isAccessibilityTool="true" 是 Android 14+ 的限制所需（§6.3.5）：
+  未声明的服务会被禁止访问标记为 accessibilityDataSensitive 的 View 内容。
+  本项目仅侧载自用、不分发、不上架；若将来要上架，此路线必须重新设计。
+-->
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accessibilityEventTypes="typeWindowStateChanged|typeWindowContentChanged"
+    android:accessibilityFeedbackType="feedbackGeneric"
+    android:accessibilityFlags="flagReportViewIds|flagRetrieveInteractiveWindows"
+    android:canRetrieveWindowContent="true"
+    android:notificationTimeout="100"
+    android:packageNames="com.tencent.mm,com.eg.android.AlipayGphone"
+    android:description="@string/svc_a11y_desc"
+    android:summary="@string/svc_a11y_summary"
+    android:isAccessibilityTool="true" />

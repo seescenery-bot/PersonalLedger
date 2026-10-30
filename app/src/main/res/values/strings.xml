@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">简账</string>
+    <string name="svc_notif_label">简账 · 微信支付宝自动记账</string>
+    <string name="svc_notif_desc">读取微信支付、支付宝的交易通知，自动记入本机账本。数据不出设备。</string>
+    <string name="svc_a11y_label">简账 · 支付成功页补全</string>
+    <string name="svc_a11y_desc">读取微信、支付宝的「支付成功」页面，补全通知里缺失的商户名与交易单号。只读取屏幕文字，不进行任何点击或操作。</string>
+    <string name="svc_a11y_summary">补全商户名（只读，不点击）</string>
+
+    <!-- 底部导航 -->
+    <string name="tab_txn">流水</string>
+    <string name="tab_stats">统计</string>
+    <string name="tab_settings">设置</string>
+
+    <!-- 通用 -->
+    <string name="common_cancel">取消</string>
+    <string name="common_confirm">确定</string>
+    <string name="common_delete">删除</string>
+    <string name="common_save">保存</string>
+    <string name="common_back">返回</string>
+    <string name="common_undo">撤销</string>
+    <string name="common_edit">编辑</string>
+    <string name="year_format">%1$d年</string>
+    <string name="month_number_format">%1$d月</string>
+    <string name="category_picker_title">选择分类</string>
+    <string name="edit_amount_label">金额</string>
+
+    <!-- 流水页 -->
+    <string name="home_month_format">%1$d年%2$d月</string>
+    <string name="home_expense">支出</string>
+    <string name="home_income">收入</string>
+    <string name="home_balance">结余</string>
+    <string name="home_empty_title">还没有任何流水</string>
+    <string name="home_empty_desc">点右下角「+」手动记一笔；开启通知使用权与无障碍后，微信、支付宝的收支会自动记进来。</string>
+    <string name="home_add">记一笔</string>
+    <string name="home_deleted">已删除这笔流水</string>
+    <string name="home_auto_badge">自动</string>
+    <string name="home_pending_banner">有 %1$d 笔流水待确认</string>
+    <string name="home_select_month">选择月份</string>
+    <string name="home_day_expense">支出 %1$s</string>
+    <string name="home_day_income">收入 %1$s</string>
+
+    <!-- 记账 / 编辑 -->
+    <string name="edit_title_new">记一笔</string>
+    <string name="edit_title_edit">编辑流水</string>
+    <string name="edit_amount_hint">0.00</string>
+    <string name="edit_amount_required">请输入金额</string>
+    <string name="edit_category">分类</string>
+    <string name="edit_channel">通道</string>
+    <string name="edit_time">时间</string>
+    <string name="edit_merchant">商户 / 对方</string>
+    <string name="edit_merchant_hint">选填，如 美团外卖</string>
+    <string name="edit_note">备注</string>
+    <string name="edit_note_hint">选填</string>
+    <string name="edit_today">今天</string>
+    <string name="edit_yesterday">昨天</string>
+    <string name="edit_pick_date">选择日期</string>
+    <string name="edit_no_category">未分类</string>
+
+    <!-- 通道 -->
+    <string name="channel_wechat">微信</string>
+    <string name="channel_alipay">支付宝</string>
+    <string name="channel_cash">现金</string>
+    <string name="channel_bank">银行卡</string>
+    <string name="channel_other">其他</string>
+
+    <!-- 分类管理 -->
+    <string name="category_title">分类管理</string>
+    <string name="category_add">新建分类</string>
+    <string name="category_new_title">新建分类</string>
+    <string name="category_name_label">分类名称</string>
+    <string name="category_name_hint">最多 8 个字</string>
+    <string name="category_icon_label">图标</string>
+    <string name="category_delete_title">删除分类</string>
+    <string name="category_delete_message">删除后，该分类下的流水将归入默认分类。确定删除？</string>
+    <string name="category_builtin_tag">内置</string>
+    <string name="category_name_required">请输入分类名称</string>
+    <string name="category_expense_section">支出分类</string>
+    <string name="category_income_section">收入分类</string>
+
+    <!-- 规则管理 -->
+    <string name="rule_title">规则管理</string>
+    <string name="rule_empty">暂无规则</string>
+    <string name="rule_empty_desc">在流水里修改分类后，可以选择“以后同类都这样记”，系统会自动生成规则。</string>
+    <string name="rule_hit_count">命中 %1$d 次</string>
+    <string name="rule_builtin_tag">内置</string>
+    <string name="rule_contains_pattern">包含「%1$s」→ %2$s</string>
+
+    <!-- 统计 -->
+    <string name="stats_empty_title">本月还没有支出</string>
+    <string name="stats_empty_desc">有流水之后，这里会显示分类占比与每日趋势。</string>
+
+    <!-- 设置 -->
+    <string name="settings_title">设置</string>
+    <string name="settings_group_data">数据与分类</string>
+    <string name="settings_categories">分类管理</string>
+    <string name="settings_categories_desc">管理收支分类与图标</string>
+    <string name="settings_rules">规则管理</string>
+    <string name="settings_rules_desc">关键词自动归类规则</string>
+    <string name="settings_import">导入账单</string>
+    <string name="settings_import_desc">微信 xlsx / 支付宝 csv，导入前自动对账</string>
+    <string name="settings_notify_on_capture">记账后推送通知</string>
+    <string name="settings_notify_on_capture_desc">自动记账后提醒，待确认的可直接在通知栏确认或忽略</string>
+    <string name="settings_group_auto">自动记账</string>
+    <string name="settings_group_diag">诊断</string>
+    <string name="settings_placeholder">以下功能将在后续里程碑实现</string>
+    <string name="settings_todo_backup">备份与恢复（M5）</string>
+    <string name="settings_todo_log">原始捕获日志（M2）</string>
+
+    <!-- M2：待确认 / 解析测试台 / 诊断 -->
+    <string name="pending_title">待确认</string>
+    <string name="pending_empty">没有待确认的流水</string>
+    <string name="pending_empty_desc">置信度不足的自动记账会先落到这里，由你裁决一次。</string>
+    <string name="pending_confirm">确认</string>
+    <string name="pending_ignore">忽略</string>
+    <string name="pending_change_category">改分类</string>
+    <string name="pending_confidence">置信度 %1$d</string>
+    <string name="pending_source">来源 %1$s</string>
+    <string name="pending_count">待确认 %1$d 笔</string>
+
+    <string name="settings_pending">待确认队列</string>
+    <string name="settings_pending_desc">%1$d 笔待裁决</string>
+    <string name="settings_parser_lab">解析测试台</string>
+    <string name="settings_parser_lab_desc">粘贴通知文本，查看会被解析成什么</string>
+    <string name="settings_diagnostics">原始捕获日志</string>
+    <string name="settings_diagnostics_desc">最近捕获的通知原文与丢弃原因</string>
+
+    <string name="settings_notif_enabled">通知通道</string>
+    <string name="settings_notif_enabled_desc">监听微信支付与支付宝交易通知</string>
+    <string name="settings_threshold">自动确认阈值</string>
+    <string name="settings_threshold_desc">%1$d 分及以上直接入账，低于则进待确认</string>
+    <string name="settings_dedupe">去重窗口</string>
+    <string name="settings_dedupe_desc">%1$d 秒内的同渠道同额同方向视为同一笔</string>
+    <string name="settings_debug_any">接收所有包名（调试）</string>
+    <string name="settings_debug_any_desc">没有真实支付时，用 cmd notification post 验证整条管线</string>
+    <string name="settings_a11y_enabled">无障碍补全</string>
+    <string name="settings_a11y_enabled_desc">读取「支付成功」页补全商户名（需在系统设置里开启无障碍服务）</string>
+
+    <string name="lab_title">解析测试台</string>
+    <string name="lab_channel">通知来源</string>
+    <string name="lab_input_label">通知正文</string>
+    <string name="lab_input_hint">粘贴一条通知文本，例如 [2条]微信支付: 已支付¥0.01</string>
+    <string name="lab_parse">解析</string>
+    <string name="lab_clear">清空</string>
+    <string name="lab_success">解析成功</string>
+    <string name="lab_discard">已丢弃</string>
+    <string name="lab_normalized">归一化后</string>
+    <string name="lab_field_amount">金额</string>
+    <string name="lab_field_direction">方向</string>
+    <string name="lab_field_channel">渠道</string>
+    <string name="lab_field_counterparty">商户/对方</string>
+    <string name="lab_field_external_no">交易单号</string>
+    <string name="lab_field_confidence">置信度</string>
+    <string name="lab_field_suggested">建议分类</string>
+    <string name="lab_none">（无）</string>
+
+    <string name="diag_title">原始捕获日志</string>
+    <string name="diag_empty">暂无捕获记录</string>
+    <string name="diag_empty_desc">开启通知使用权后，微信/支付宝的每条通知（含被丢弃的）都会记在这里。</string>
+    <string name="diag_clear">清理 7 天前</string>
+    <string name="diag_cleared">已清理 %1$d 条</string>
+    <string name="diag_ok">已入账</string>
+    <string name="diag_discarded">已丢弃</string>
+</resources>

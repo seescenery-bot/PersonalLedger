@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="window_background_light">#FFF7F8F7</color>
+    <!--
+      两套窗口底色都必须在 base 里声明。
+      只在 values-night/ 里声明 window_background_dark 时，浅色配置下这个资源根本不存在，
+      任何一处引用都会在运行时抛 Resources$NotFoundException（lint MissingDefaultResource）。
+      具体用哪一个由 values/ 与 values-night/ 的 themes.xml 决定。
+    -->
+    <color name="window_background_dark">#FF111413</color>
+</resources>

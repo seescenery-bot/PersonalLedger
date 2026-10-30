@@ -1,0 +1,29 @@
+# 微信 / 支付宝 支付通知样本（合成数据，全部为虚构）
+# 用途：说明通道 A 拿到的字段形态，供人工对照；单元测试直接用内联字符串。
+#
+# 关键事实（真机实测，与本文件是否真实无关）：微信支付通知只提供 title + text，
+# 没有 bigText / textLines，因此通道 A 拿不到商户名，必须靠通道 B 补全。
+
+[app=com.tencent.mm]
+[channel_id=message_channel_0000000000000]
+[channel_name=新消息通知]
+title=微信支付
+text=[2条]微信支付: 已支付¥12.50
+
+[app=com.tencent.mm]
+[channel_id=message_channel_0000000000000]
+[channel_name=新消息通知]
+title=微信支付
+text=已收款¥12.40
+
+[app=com.eg.android.AlipayGphone]
+[channel_id=alipay_notify]
+[channel_name=交易提醒]
+title=支付宝
+text=你有一笔4.50元的支出
+
+[app=com.eg.android.AlipayGphone]
+[channel_id=alipay_notify]
+[channel_name=交易提醒]
+title=支付宝
+text=示例营销消息，不含金额

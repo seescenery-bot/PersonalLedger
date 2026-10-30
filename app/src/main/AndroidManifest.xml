@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 只声明需要判断是否安装的两个 App；不申请 INTERNET（§0 铁律 3） -->
+    <queries>
+        <package android:name="com.tencent.mm" />
+        <package android:name="com.eg.android.AlipayGphone" />
+    </queries>
+
+    <!-- 记账后推送通知（Android 13+ 需要运行时授权）。
+         申请时机受小米《开发者生态政策》约束：只能在用户点「去开启」时申请，
+         不得冷启动弹窗、不得在用户拒绝后反复索要 —— 见 PermissionHealthCard。 -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <application
+        android:name=".LedgerApp"
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:forceDarkAllowed="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.PersonalLedger">
+
+        <!--
+          forceDarkAllowed=false：本应用自带完整深色主题（values-night + Compose darkColorScheme）。
+          Android 10+ 的"强制深色"会在主题没声明时对未适配页面做自动取反，
+          澎湃OS 也会用同样的机制（文档 pId=1595），关掉它才能保证界面按设计稿渲染。
+        -->
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 通道 A：通知监听（§6.2.1） -->
+        <service
+            android:name=".service.LedgerNotificationListener"
+            android:exported="false"
+            android:label="@string/svc_notif_label"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+
+        <!-- 通道 B：无障碍读屏（§6.3.1） -->
+        <service
+            android:name=".service.LedgerAccessibilityService"
+            android:exported="false"
+            android:label="@string/svc_a11y_label"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+
+        <!-- 记账通知上的「确认 / 忽略」动作。
+             exported=false：只由本应用自己发的 PendingIntent 触发，外部进不来。 -->
+        <receiver
+            android:name=".notify.PendingActionReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.mizhii.ledger.action.CONFIRM_TXN" />
+                <action android:name="com.mizhii.ledger.action.IGNORE_TXN" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

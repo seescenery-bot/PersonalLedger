@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  备份 / 换机迁移规则（Android 12+ 的 android:dataExtractionRules）。
+
+  为什么两项都 exclude：
+    · 这是账本 —— 全部收支记录都在这里，不做任何云端备份是本项目的既有铁律（需求文档 §0）；
+    · adb backup / 云备份 / 换机迁移 都会把 databases/ 整包搬走，
+      而账本一旦被搬到一个旧版本 App 上，Room 的 schema 版本对不上会直接起不来；
+    · 数据迁移由应用内的「备份与恢复」负责（M5）：导出加密文件 → 用户自己保管 → 新机导入。
+      这是唯一能让用户知道"数据在谁手里"的方式。
+
+  注意：android:allowBackup="false" 已经禁止了备份，这个文件是显式声明意图，
+  同时消除 lint 的 DataExtractionRules 告警，并在 allowBackup 未来被系统忽略时仍然生效。
+-->
+<data-extraction-rules>
+    <cloud-backup>
+        <exclude domain="root" />
+        <exclude domain="file" />
+        <exclude domain="database" />
+        <exclude domain="sharedpref" />
+        <exclude domain="external" />
+    </cloud-backup>
+    <device-transfer>
+        <exclude domain="root" />
+        <exclude domain="file" />
+        <exclude domain="database" />
+        <exclude domain="sharedpref" />
+        <exclude domain="external" />
+    </device-transfer>
+</data-extraction-rules>
