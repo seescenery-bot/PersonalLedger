@@ -67,8 +67,9 @@ class BackupViewModel(
             _state.value = _state.value.copy(busy = true, error = null, notice = null)
             runCatching {
                 withContext(Dispatchers.IO) {
+                    // 只读一次库：摘要与实际写进文件的必须是同一份内容
                     val content = service.buildContent()
-                    val blob = service.exportBlob(password)
+                    val blob = service.encryptContent(content, password)
                     contentResolver.openOutputStream(target)?.use { it.write(blob) }
                         ?: error("无法写入目标文件")
                     service.summarize(content) to blob.size

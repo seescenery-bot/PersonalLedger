@@ -81,12 +81,12 @@ class BackupService(
         )
     }
 
+    /** 把已经组装好的内容加密成可落盘的字节（避免重复读库导致摘要与实际内容不一致） */
+    fun encryptContent(content: BackupContent, password: CharArray): ByteArray =
+        BackupCipher.encrypt(password, BackupFormat.encode(content))
+
     /** 生成可以直接落盘的加密备份字节 */
-    suspend fun exportBlob(password: CharArray): ByteArray {
-        val content = buildContent()
-        val plain = BackupFormat.encode(content)
-        return BackupCipher.encrypt(password, plain)
-    }
+    suspend fun exportBlob(password: CharArray): ByteArray = encryptContent(buildContent(), password)
 
     /**
      * 解密并解析备份文件。
