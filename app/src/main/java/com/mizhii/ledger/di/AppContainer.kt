@@ -15,6 +15,7 @@ import com.mizhii.ledger.domain.capture.Deduper
 import com.mizhii.ledger.domain.backup.BackupService
 import com.mizhii.ledger.domain.import.BillImporter
 import com.mizhii.ledger.notify.CaptureNotifier
+import com.mizhii.ledger.widget.LedgerWidgetProvider
 
 /**
  * 手写依赖容器（文档 §9.5 的降级方案）。
@@ -79,10 +80,12 @@ class AppContainer(context: Context) {
     }
 
     /**
-     * 新建一笔账 → 推送通知。
+     * 新建一笔账 → 刷新桌面小部件 + 推送通知。
      * 只在真正新增时调用（合并/去重不打扰）；通知失败绝不影响已入库的数据。
      */
     private suspend fun notifyNewTxn(entity: TxnEntity) {
+        // 小部件刷新与"是否推送通知"无关：用户关了通知，桌面上的数字照样要更新
+        LedgerWidgetProvider.refresh(appContext)
         runCatching {
             if (!settingsRepository.current().notifyOnCapture) return
             captureNotifier.ensureChannel()
@@ -105,6 +108,7 @@ class AppContainer(context: Context) {
 
     /** 账单导入是批量操作，只推一条汇总，绝不逐笔推 */
     private suspend fun notifyImport(result: BillImporter.Result) {
+        LedgerWidgetProvider.refresh(appContext)
         runCatching {
             if (!settingsRepository.current().notifyOnCapture) return
             captureNotifier.notifyImport(result.fileName, result.newCount, result.mergedCount)

@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import com.mizhii.ledger.ui.LedgerRoot
 import com.mizhii.ledger.ui.Routes
 import com.mizhii.ledger.ui.theme.LedgerTheme
+import com.mizhii.ledger.widget.LedgerWidgetProvider
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 
@@ -49,6 +50,15 @@ class MainActivity : ComponentActivity() {
         if (intent.getBooleanExtra(EXTRA_OPEN_PENDING, false)) {
             openPendingEvents.tryEmit(Unit)
         }
+    }
+
+    /**
+     * 回到前台时刷一次小部件。
+     * 用户在应用里改分类/删流水/恢复备份都不会走 capture 管线，靠这里兜住。
+     */
+    override fun onStart() {
+        super.onStart()
+        LedgerWidgetProvider.refresh(this)
     }
 
     companion object {

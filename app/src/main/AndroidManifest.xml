@@ -76,6 +76,20 @@
             </intent-filter>
         </receiver>
 
+        <!-- 桌面小部件「简账·本月账目」（M6）。
+             exported 必须为 true：桌面进程要能给它发 APPWIDGET_UPDATE 广播。 -->
+        <receiver
+            android:name=".widget.LedgerWidgetProvider"
+            android:exported="true"
+            android:label="@string/widget_label">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/ledger_widget_info" />
+        </receiver>
+
     </application>
 
 </manifest>

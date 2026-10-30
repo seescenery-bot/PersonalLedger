@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 小部件深色模式（规范 §3「小部件必须支持深色模式」） -->
+    <color name="widget_surface">#FF1C211F</color>
+    <color name="widget_text_primary">#FFE1E3E0</color>
+    <color name="widget_text_secondary">#66E1E3E0</color>
+    <color name="widget_income">#FF4DB6A1</color>
+    <color name="widget_expense">#FFF2B8B5</color>
+    <color name="widget_divider">#1FE1E3E0</color>
+</resources>

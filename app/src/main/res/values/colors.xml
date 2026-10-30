@@ -8,4 +8,18 @@
       具体用哪一个由 values/ 与 values-night/ 的 themes.xml 决定。
     -->
     <color name="window_background_dark">#FF111413</color>
+
+    <!--
+      桌面小部件的配色（HyperOS 小部件设计规范 §4.2.3）。
+      规范要求字色分主/次/辅三级，这里用"正文色 + 40% 透明"表达层级：
+      标题与说明文字用 widget_text_secondary（40%），数据用 widget_text_primary。
+      深色模式的值在 values-night/colors.xml 覆盖。
+    -->
+    <color name="widget_surface">#FFFFFFFF</color>
+    <color name="widget_text_primary">#FF191C1B</color>
+    <!-- 0x66 ≈ 40% 不透明度 -->
+    <color name="widget_text_secondary">#66191C1B</color>
+    <color name="widget_income">#FF2E7D6B</color>
+    <color name="widget_expense">#FFB3261E</color>
+    <color name="widget_divider">#1F191C1B</color>
 </resources>

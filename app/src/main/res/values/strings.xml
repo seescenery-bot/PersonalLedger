@@ -162,4 +162,8 @@
     <string name="diag_cleared">已清理 %1$d 条</string>
     <string name="diag_ok">已入账</string>
     <string name="diag_discarded">已丢弃</string>
+    <!-- 桌面小部件（HyperOS 小部件设计规范：名称格式「应用名称·小部件名称」，2~10 个汉字；介绍 ≤22 中文字符） -->
+    <string name="widget_label">简账·本月账目</string>
+    <string name="widget_description">本月支出、收入与最近几笔流水</string>
+
 </resources>

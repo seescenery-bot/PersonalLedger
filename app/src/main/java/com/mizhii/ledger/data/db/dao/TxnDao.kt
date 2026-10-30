@@ -170,6 +170,25 @@ interface TxnDao {
 
     @Query("DELETE FROM txn")
     suspend fun deleteAll()
+
+    // ── 桌面小部件（M6）────────────────────────────────────────────
+    // 小部件是一次性读快照，不能用 Flow，所以单独给 suspend 版本。
+
+    @Query(
+        """
+        SELECT IFNULL(SUM(CASE WHEN direction = 'EXPENSE' THEN amountCents ELSE 0 END), 0) AS expenseCents,
+               IFNULL(SUM(CASE WHEN direction = 'INCOME'  THEN amountCents ELSE 0 END), 0) AS incomeCents
+        FROM txn
+        WHERE status = 'CONFIRMED' AND dayKey LIKE :monthPrefix || '%'
+        """
+    )
+    suspend fun monthSummaryOnce(monthPrefix: String): MonthSummary
+
+    @Query("SELECT COUNT(*) FROM txn WHERE status = 'CONFIRMED' AND dayKey LIKE :monthPrefix || '%'")
+    suspend fun monthTxnCount(monthPrefix: String): Int
+
+    @Query("SELECT * FROM txn WHERE status = 'CONFIRMED' ORDER BY occurredAt DESC LIMIT :limit")
+    suspend fun recentConfirmed(limit: Int): List<TxnEntity>
 }
 
 data class CategoryTotal(

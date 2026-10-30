@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  小部件元数据（HyperOS 小部件设计规范 §4.1：手机支持 2×2 / 4×2 / 4×4）。
+  Android 的尺寸换算是 70dp × 格数 − 30dp：
+    2×2 → 110×110dp，4×2 → 250×110dp，4×4 → 250×250dp。
+  尺寸变化不换 provider，由 onAppWidgetOptionsChanged 切换布局。
+-->
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="110dp"
+    android:minHeight="110dp"
+    android:minResizeWidth="110dp"
+    android:minResizeHeight="110dp"
+    android:maxResizeWidth="250dp"
+    android:maxResizeHeight="250dp"
+    android:targetCellWidth="2"
+    android:targetCellHeight="2"
+    android:resizeMode="horizontal|vertical"
+    android:initialLayout="@layout/widget_ledger_2x2"
+    android:previewLayout="@layout/widget_ledger_2x2"
+    android:description="@string/widget_description"
+    android:widgetCategory="home_screen"
+    android:updatePeriodMillis="1800000" />
