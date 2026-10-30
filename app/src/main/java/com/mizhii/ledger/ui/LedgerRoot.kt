@@ -25,6 +25,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.mizhii.ledger.R
+import com.mizhii.ledger.ui.backup.BackupScreen
 import com.mizhii.ledger.ui.category.CategoryManageScreen
 import com.mizhii.ledger.ui.diag.DiagnosticsScreen
 import com.mizhii.ledger.ui.home.HomeScreen
@@ -46,6 +47,7 @@ object Routes {
     const val PARSER_LAB = "parser_lab"
     const val DIAGNOSTICS = "diagnostics"
     const val IMPORT = "import"
+    const val BACKUP = "backup"
 }
 
 private data class RootTab(
@@ -139,7 +141,8 @@ fun LedgerRoot(
                     onOpenPending = { navController.navigate(Routes.PENDING) },
                     onOpenParserLab = { navController.navigate(Routes.PARSER_LAB) },
                     onOpenDiagnostics = { navController.navigate(Routes.DIAGNOSTICS) },
-                    onOpenImport = { navController.navigate(Routes.IMPORT) }
+                    onOpenImport = { navController.navigate(Routes.IMPORT) },
+                    onOpenBackup = { navController.navigate(Routes.BACKUP) }
                 )
             }
             composable(Routes.CATEGORIES) {
@@ -159,6 +162,9 @@ fun LedgerRoot(
             }
             composable(Routes.IMPORT) {
                 ImportScreen(onBack = { navController.popBackStack() })
+            }
+            composable(Routes.BACKUP) {
+                BackupScreen(onBack = { navController.popBackStack() })
             }
         }
     }

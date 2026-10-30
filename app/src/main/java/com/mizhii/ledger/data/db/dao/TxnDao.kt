@@ -158,6 +158,18 @@ interface TxnDao {
         """
     )
     fun observeTopMerchants(monthPrefix: String, limit: Int = 5): Flow<List<MerchantTotal>>
+
+    // ── 备份 / 恢复（M5 §7.6）──────────────────────────────────────
+
+    @Query("SELECT * FROM txn ORDER BY id ASC")
+    suspend fun getAll(): List<TxnEntity>
+
+    /** 恢复时必须保留原 id：待确认通知、忽略名单、导入批次都按 id 关联 */
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun restoreAll(items: List<TxnEntity>)
+
+    @Query("DELETE FROM txn")
+    suspend fun deleteAll()
 }
 
 data class CategoryTotal(

@@ -17,4 +17,16 @@ interface IgnoreEntryDao {
 
     @Query("SELECT externalNo FROM ignore_entry")
     suspend fun allExternalNos(): List<String>
+
+    // ── 备份 / 恢复（M5 §7.6）──────────────────────────────────────
+    // 忽略名单丢了 = 用户删过的自动流水会在下次导入账单时全部复活。
+
+    @Query("SELECT * FROM ignore_entry ORDER BY createdAt ASC")
+    suspend fun getAll(): List<IgnoreEntryEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun restoreAll(items: List<IgnoreEntryEntity>)
+
+    @Query("DELETE FROM ignore_entry")
+    suspend fun deleteAll()
 }

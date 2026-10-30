@@ -12,6 +12,7 @@ import com.mizhii.ledger.data.repo.TxnRepository
 import com.mizhii.ledger.domain.capture.CapturePipeline
 import com.mizhii.ledger.domain.capture.Categorizer
 import com.mizhii.ledger.domain.capture.Deduper
+import com.mizhii.ledger.domain.backup.BackupService
 import com.mizhii.ledger.domain.import.BillImporter
 import com.mizhii.ledger.notify.CaptureNotifier
 
@@ -40,6 +41,17 @@ class AppContainer(context: Context) {
 
     /** 记账通知 */
     val captureNotifier: CaptureNotifier by lazy { CaptureNotifier(appContext) }
+
+    /** 备份与恢复（M5 §7.6） */
+    val backupService: BackupService by lazy {
+        BackupService(
+            db = database,
+            settingsRepository = settingsRepository,
+            appVersion = runCatching {
+                appContext.packageManager.getPackageInfo(appContext.packageName, 0).versionName
+            }.getOrNull() ?: "unknown"
+        )
+    }
 
     /** 捕获管线：NotificationListenerService 里直接用 */
     val capturePipeline: CapturePipeline by lazy {

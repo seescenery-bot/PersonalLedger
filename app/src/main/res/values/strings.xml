@@ -102,9 +102,10 @@
     <string name="settings_notify_on_capture">记账后推送通知</string>
     <string name="settings_notify_on_capture_desc">自动记账后提醒，待确认的可直接在通知栏确认或忽略</string>
     <string name="settings_group_auto">自动记账</string>
+    <string name="settings_group_backup">数据安全</string>
+    <string name="settings_backup">备份与恢复</string>
+    <string name="settings_backup_desc">导出加密备份文件，或从备份还原账本</string>
     <string name="settings_group_diag">诊断</string>
-    <string name="settings_placeholder">以下功能将在后续里程碑实现</string>
-    <string name="settings_todo_backup">备份与恢复（M5）</string>
     <string name="settings_todo_log">原始捕获日志（M2）</string>
 
     <!-- M2：待确认 / 解析测试台 / 诊断 -->

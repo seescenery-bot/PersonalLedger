@@ -34,4 +34,13 @@ interface CategoryDao {
     /** 删除自定义分类时，其下流水迁移到兜底分类（§7.4 删除保护） */
     @Query("UPDATE txn SET categoryId = :toCategoryId, categorySource = 'DEFAULT' WHERE categoryId = :fromCategoryId")
     suspend fun migrateTransactions(fromCategoryId: String, toCategoryId: String): Int
+
+    // ── 备份 / 恢复（M5 §7.6）──────────────────────────────────────
+
+    /** 备份要**含归档分类**，否则恢复后历史流水会挂在空分类上 */
+    @Query("SELECT * FROM category ORDER BY sortOrder ASC")
+    suspend fun getAllIncludingArchived(): List<CategoryEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun restoreAll(items: List<CategoryEntity>)
 }

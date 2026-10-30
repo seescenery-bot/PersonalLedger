@@ -46,6 +46,7 @@ fun SettingsScreen(
     onOpenParserLab: () -> Unit,
     onOpenDiagnostics: () -> Unit,
     onOpenImport: () -> Unit,
+    onOpenBackup: () -> Unit,
     viewModel: SettingsViewModel = viewModel(factory = SettingsViewModel.Factory)
 ) {
     val settings by viewModel.settings.collectAsStateWithLifecycle()
@@ -212,9 +213,15 @@ fun SettingsScreen(
 
         item { HorizontalDivider() }
 
-        // ── 后续里程碑 ──
-        item { GroupHeader(stringResource(R.string.settings_placeholder)) }
-        item { DisabledRow(stringResource(R.string.settings_todo_backup)) }
+        // ── 数据安全 ──
+        item { GroupHeader(stringResource(R.string.settings_group_backup)) }
+        item {
+            NavRow(
+                title = stringResource(R.string.settings_backup),
+                subtitle = stringResource(R.string.settings_backup_desc),
+                onClick = onOpenBackup
+            )
+        }
 
         item { Spacer(Modifier.height(24.dp)) }
     }
@@ -307,22 +314,6 @@ private fun SliderRow(
             onValueChangeFinished = { onCommit(local) },
             valueRange = range.first.toFloat()..range.last.toFloat(),
             steps = steps
-        )
-    }
-}
-
-@Composable
-private fun DisabledRow(title: String) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 14.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Text(
-            text = title,
-            style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
         )
     }
 }

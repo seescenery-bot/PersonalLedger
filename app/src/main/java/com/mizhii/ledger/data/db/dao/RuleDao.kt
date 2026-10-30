@@ -31,4 +31,12 @@ interface RuleDao {
 
     @Query("SELECT COUNT(*) FROM rule")
     suspend fun count(): Int
+
+    // ── 备份 / 恢复（M5 §7.6）──────────────────────────────────────
+
+    @Query("SELECT * FROM rule ORDER BY priority ASC, createdAt ASC")
+    suspend fun getAll(): List<RuleEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun restoreAll(items: List<RuleEntity>)
 }
