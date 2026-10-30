@@ -13,13 +13,54 @@ android {
         applicationId = "com.mizhii.ledger"
         minSdk = 34
         targetSdk = 36
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = 2
+        versionName = "0.1.1"
+    }
+
+    /**
+     * 自用侧载的签名方式。
+     *
+     * 刻意复用 Android 调试证书（`~/.android/debug.keystore`，口令是公开的 `android`）：
+     *  - 好处：与 debug 包**同一个签名**，可以用 `adb install -r` 直接覆盖升级，不会清数据；
+     *    换成新 keystore 就必须先卸载，而卸载会连同 Room 里的账本一起删掉；
+     *  - 代价：不具备"签名即身份"的意义，**不要**用它上架应用商店；
+     *  - 仓库里不放任何密钥文件，这个证书由构建机自己生成。
+     */
+    signingConfigs {
+        create("selfSigned") {
+            // 必须用与 debug 构建**同一个** keystore，否则覆盖安装会因签名不一致失败。
+            // AGP 解析 debug keystore 的顺序：ANDROID_USER_HOME → ANDROID_SDK_HOME → ~/.android
+            val candidates = listOfNotNull(
+                System.getenv("ANDROID_USER_HOME")?.let { File(it, "debug.keystore") },
+                System.getenv("ANDROID_SDK_HOME")?.let { File(it, ".android/debug.keystore") },
+                File(System.getProperty("user.home"), ".android/debug.keystore"),
+            )
+            val store = candidates.firstOrNull { it.exists() }
+            if (store != null) {
+                storeFile = store
+                storePassword = "android"
+                keyAlias = "androiddebugkey"
+                keyPassword = "android"
+            } else {
+                logger.warn("找不到 debug.keystore，release APK 将不会签名（仅用于本地检查）")
+            }
+        }
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            signingConfig = signingConfigs.getByName("selfSigned")
+            // 只在小米 14（arm64）上验证过，其他 ABI 明确不支持（见 README 兼容性声明）
+            ndk {
+                abiFilters.clear()
+                abiFilters.add("arm64-v8a")
+            }
         }
     }
 

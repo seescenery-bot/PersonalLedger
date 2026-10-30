@@ -42,12 +42,29 @@
 - 账本存于本机 Room 数据库，`allowBackup=false`，云备份与换机迁移均显式关闭
 - 仅声明判断两个应用是否安装的 `<queries>`，不使用 `QUERY_ALL_PACKAGES`
 
+## 安装
+
+从 [Releases](https://github.com/seescenery-bot/PersonalLedger/releases) 下载 `app-release.apk`，侧载安装。
+
+| 项 | 值 |
+|---|---|
+| 版本 | 0.1.1（versionCode 2） |
+| 大小 | 3.2 MB（R8 压缩 + 资源裁剪，只含 `arm64-v8a`） |
+| 签名 | **Android 调试证书**（自用侧载方便覆盖升级，见下） |
+| 最低系统 | Android 14（API 34），实际只在 Android 16 上验证过 |
+
+> **为什么用调试证书签名**：换成新 keystore 的话，安装时会因签名不一致要求先卸载，
+> 而卸载会连带删掉 Room 里的账本。用同一个调试证书可以 `adb install -r` 直接覆盖升级。
+> 代价是它没有"签名即身份"的意义 —— **不要**用它上架应用商店。
+> 仓库里不存放任何密钥文件，证书由构建机自己生成。
+
 ## 构建
 
 ```bash
 # 需要 JDK 17、Android SDK（compileSdk 37）
+./gradlew :app:assembleRelease   # 签名 + R8 + 资源裁剪，产物 ~3.2 MB
 ./gradlew :app:assembleDebug
-./gradlew :app:assembleDebug :app:testDebugUnitTest :app:lintDebug
+./gradlew :app:testDebugUnitTest :app:lintDebug
 ```
 
 | 项 | 值 |
